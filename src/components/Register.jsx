@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { registerUser } from "../api/auth";
+import useAuth from "../hooks/useAuth";
 
-const Register = async () => {
+const Register = () => {
+  const { setToken, token, user } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <div>
+      <h4>{user?.username}</h4>
       <form
         onSubmit={async (event) => {
           event.preventDefault();
