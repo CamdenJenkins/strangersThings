@@ -3,6 +3,7 @@ import { registerUser } from "../api/auth";
 import useAuth from "../hooks/useAuth";
 
 const Register = async () => {
+  const { setToken, token, user } = useAuth;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
