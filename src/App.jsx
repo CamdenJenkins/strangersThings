@@ -3,9 +3,9 @@ import { fetchMe } from "./api/auth";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Register from "./components/Register";
-import { Routes, Route, useActionData } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import useAuth from "./hooks/useAuth";
-import Posts from "./components/posts";
+import Posts from "./components/Posts";
 
 function App() {
   const { user } = useAuth();
