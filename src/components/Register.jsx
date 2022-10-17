@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { registerUser } from "../api/auth";
 
-const Register = async () => {
+const Register = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
