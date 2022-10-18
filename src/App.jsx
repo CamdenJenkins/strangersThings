@@ -8,12 +8,15 @@ import useAuth from "./hooks/useAuth";
 import Posts from "./components/Posts";
 
 function App() {
-  const { user } = useAuth();
+  const { user, setToken } = useAuth();
   return (
     <div className="App">
-      <NavBar />
+      <NavBar user={user} setToken={setToken} />
       <Routes>
-        <Route path="/auth/:method" element={<Register />} />
+        <Route
+          path="/auth/:method"
+          element={<Register setToken={setToken} />}
+        />
         <Route path="/posts" element={<Posts />} />
       </Routes>
     </div>

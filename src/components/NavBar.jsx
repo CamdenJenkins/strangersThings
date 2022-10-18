@@ -1,23 +1,29 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import styles from "../styles/Nav.module.css";
 
-const NavBar = () => {
+const NavBar = ({ user, setToken }) => {
   const navigate = useNavigate();
-  const { user, setToken } = useAuth();
 
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/posts">Posts</Link>
+    <nav className={styles.nav}>
+      <span> {user.username}</span>
+      <Link className={styles.home} to="/posts">
+        Home
+      </Link>
 
       {user.username === "Guest" ? (
         <>
           {""}
           <span>
-            <Link to="/auth/register">Sign-up</Link>
+            <Link className={styles.signup} to="/auth/register">
+              Sign-up
+            </Link>
           </span>
           <span>
-            <Link to="/auth/login">Login</Link>
+            <Link className={styles.login} to="/auth/login">
+              Login
+            </Link>
           </span>
         </>
       ) : null}
@@ -25,17 +31,18 @@ const NavBar = () => {
       {user.username !== "Guest" ? (
         <span>
           <button
+            className={styles.logout}
             onClick={() => {
+              navigate("/auth/login");
               localStorage.removeItem("token");
               setToken("");
-              navigate("/auth/login");
             }}
           >
             Log Out
           </button>
         </span>
       ) : null}
-    </div>
+    </nav>
   );
 };
 

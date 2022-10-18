@@ -14,7 +14,7 @@ const useAuth = () => {
     };
     if (token) {
       getMe();
-    } else if (token === "") {
+    } else {
       setUser({ username: "Guest" });
     }
     console.log("in the useEffect");

@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { loginUser, registerUser } from "../api/auth";
 import useAuth from "../hooks/useAuth";
+import styles from "../styles/Form.module.css";
 
-const Register = () => {
+const Register = ({ setToken }) => {
   const { method } = useParams();
   const navigate = useNavigate();
-  const { setToken, token, user } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   return (
-    <div>
-      <h4>{user?.username}</h4>
+    <div className={styles.form}>
       <form
+        id={styles.auth}
+        className="pure-form pure-form-stacked"
         onSubmit={async (event) => {
           event.preventDefault();
 
@@ -27,12 +29,20 @@ const Register = () => {
           console.log(result);
           console.log({ username, password });
 
-          const token = result.data.token;
-          localStorage.setItem("token", token);
-          setToken(token);
+          if (result.success) {
+            const token = result.data.token;
+            localStorage.setItem("token", token);
+            setToken(token);
+            setPassword("");
+            setUsername("");
+            navigate("/posts");
+          } else {
+            setError(result.error.message);
+          }
         }}
       >
         <input
+          className={styles.username}
           value={username}
           onChange={(e) => {
             setUsername(e.target.value);
@@ -41,6 +51,7 @@ const Register = () => {
           placeholder="username"
         />
         <input
+          className={styles.password}
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
@@ -48,7 +59,11 @@ const Register = () => {
           type="text"
           placeholder="password"
         />
-        <button type="submit">
+        <button
+          id={styles.button}
+          className="pure-button pure-button-primary"
+          type="submit"
+        >
           {method === "register" ? "Register" : "Login"}
         </button>
       </form>
