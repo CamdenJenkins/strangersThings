@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-import { registerUser } from "../api/auth";
+import { useNavigate, useParams } from "react-router-dom";
+import { loginUser, registerUser } from "../api/auth";
 import useAuth from "../hooks/useAuth";
 
 const Register = () => {
+  const { method } = useParams();
+  const navigate = useNavigate();
   const { setToken, token, user } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,9 +16,17 @@ const Register = () => {
       <form
         onSubmit={async (event) => {
           event.preventDefault();
-          console.log({ username, password });
-          const result = await registerUser(username, password);
+
+          let result;
+
+          if (method === "register") {
+            result = await registerUser(username, password);
+          } else {
+            result = await loginUser(username, password);
+          }
           console.log(result);
+          console.log({ username, password });
+
           const token = result.data.token;
           localStorage.setItem("token", token);
           setToken(token);
@@ -37,7 +48,9 @@ const Register = () => {
           type="text"
           placeholder="password"
         />
-        <button type="submit">Register</button>
+        <button type="submit">
+          {method === "register" ? "Register" : "Login"}
+        </button>
       </form>
     </div>
   );

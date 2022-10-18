@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/register" element={<Register />} />
+        <Route path="/auth/:method" element={<Register />} />
         <Route path="/posts" element={<Posts />} />
       </Routes>
     </div>
