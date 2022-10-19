@@ -1,5 +1,3 @@
-const SinglePostView = () => {
-    
-};
+const SinglePostView = () => {};
 
 export default SinglePostView;

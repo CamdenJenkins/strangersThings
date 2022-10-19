@@ -52,8 +52,11 @@ export const deletePostById = async (postId, token) => {
 
 export const getPostById = async (postId) => {
   const response = await fetch(
-    `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/posts/${postId}`
+    `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/posts/`
   );
   const result = await response.json();
-  return result.data.posts;
+  const filteredPosts = result.data.posts.filter((post) => {
+    return post._id === postId;
+  });
+  return filteredPosts[0];
 };

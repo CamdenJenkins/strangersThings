@@ -21,7 +21,10 @@ function App() {
         />
         <Route path="/" element={<Posts token={token} />} />
         <Route path="/makepost" element={<NewPostForm token={token} />} />
-        <Route path="/singlepost/:postId" element={<SinglePostView />} />
+        <Route
+          path="/singlepost/:postId"
+          element={<SinglePostView token={token} />}
+        />
       </Routes>
     </div>
   );
