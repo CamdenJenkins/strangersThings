@@ -26,10 +26,10 @@ const Posts = ({ token }) => {
         return (
           <div className={styles.postsPage} key={post._id}>
             <div className={styles.postCard}>
-              <p className={styles.price}> {post.price}</p>
               <h3 className={styles.header}>{post.title}</h3>
               <p className={styles.description}>{post.description}</p>
               <p>{post.willDeliver}</p>
+              <p className={styles.price}>Price: {post.price}</p>
               <button
                 id={styles.button}
                 className="pure-button pure-button-primary"

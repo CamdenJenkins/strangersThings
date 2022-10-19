@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deletePostById, getPostById } from "../api/posts";
-
+import styles from "../styles/SinglePost.module.css";
 const SinglePostView = ({ token }) => {
   const { postId } = useParams();
 
@@ -26,12 +26,18 @@ const SinglePostView = ({ token }) => {
   console.log(singlePost);
 
   return (
-    <div>
-      <div>{singlePost.title}</div>
-      <div>{singlePost.description}</div>
-      <div>{singlePost.price}</div>
+    <div className={styles.singlePostCard}>
+      <h1 className={styles.title}>{singlePost.title}</h1>
+      <div className={styles.description}>{singlePost.description}</div>
+      <div className={styles.price}>Price: {singlePost.price}</div>
       <div>{singlePost.willDeliver}</div>
-      <button onClick={deletePost}>Delete</button>
+      <button
+        id={styles.button}
+        className="pure-button pure-button-primary"
+        onClick={deletePost}
+      >
+        Delete
+      </button>
     </div>
   );
 };
