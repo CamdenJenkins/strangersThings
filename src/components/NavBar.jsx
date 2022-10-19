@@ -8,9 +8,10 @@ const NavBar = ({ user, setToken }) => {
   return (
     <nav className={styles.nav}>
       <span> {user.username}</span>
-      <Link className={styles.home} to="/posts">
+      <Link className={styles.home} to="/">
         Home
       </Link>
+      <Link to="/makepost">Add Post</Link>
 
       {user.username === "Guest" ? (
         <>

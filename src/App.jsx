@@ -6,9 +6,11 @@ import Register from "./components/Register";
 import { Routes, Route } from "react-router-dom";
 import useAuth from "./hooks/useAuth";
 import Posts from "./components/Posts";
+import NewPostForm from "./components/MakePosts";
+import SinglePostView from "./components/SinglePostView";
 
 function App() {
-  const { user, setToken } = useAuth();
+  const { user, setToken, token } = useAuth();
   return (
     <div className="App">
       <NavBar user={user} setToken={setToken} />
@@ -17,7 +19,9 @@ function App() {
           path="/auth/:method"
           element={<Register setToken={setToken} />}
         />
-        <Route path="/posts" element={<Posts />} />
+        <Route path="/" element={<Posts token={token} />} />
+        <Route path="/makepost" element={<NewPostForm token={token} />} />
+        <Route path="/singlepost/:postId" element={<SinglePostView />} />
       </Routes>
     </div>
   );

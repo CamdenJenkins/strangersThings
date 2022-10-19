@@ -35,7 +35,7 @@ const Register = ({ setToken }) => {
             setToken(token);
             setPassword("");
             setUsername("");
-            navigate("/posts");
+            navigate("/");
           } else {
             setError(result.error.message);
           }

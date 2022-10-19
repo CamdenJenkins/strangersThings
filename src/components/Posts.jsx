@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchPosts } from "../api/posts";
+import { deletePostById, fetchPosts } from "../api/posts";
 
-const Posts = () => {
+const Posts = ({ token }) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const recievePosts = async () => {
@@ -12,6 +12,10 @@ const Posts = () => {
     recievePosts();
   }, []);
   console.log(posts);
+  const deletePost = async () => {
+    const result = await deletePostById(posts.post._id, token);
+    console.log(posts.post._id);
+  };
   return (
     <div>
       {posts.map((post) => {
@@ -21,6 +25,7 @@ const Posts = () => {
               <h3>{post.title}</h3>
               <p>{post.description}</p>
               <p>{post.price}</p>
+              <button onClick={deletePost}>Delete Post</button>
             </div>
           </div>
         );
