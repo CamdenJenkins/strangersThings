@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { deletePostById, fetchPosts } from "../api/posts";
+import styles from "../styles/Posts.module.css";
 
 const Posts = ({ token }) => {
+  const navigate = useNavigate();
+
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const recievePosts = async () => {
@@ -12,20 +16,29 @@ const Posts = ({ token }) => {
     recievePosts();
   }, []);
   console.log(posts);
-  const deletePost = async () => {
-    const result = await deletePostById(posts.post._id, token);
-    console.log(posts.post._id);
-  };
+  // const deletePost = async () => {
+  //   const result = await deletePostById(posts.post._id, token);
+  //   console.log(posts.post._id);
+  // };
   return (
     <div>
       {posts.map((post) => {
         return (
-          <div key={post.id}>
-            <div>
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <p>{post.price}</p>
-              <button onClick={deletePost}>Delete Post</button>
+          <div className={styles.postsPage} key={post._id}>
+            <div className={styles.postCard}>
+              <p className={styles.price}> {post.price}</p>
+              <h3 className={styles.header}>{post.title}</h3>
+              <p className={styles.description}>{post.description}</p>
+              <p>{post.willDeliver}</p>
+              <button
+                id={styles.button}
+                className="pure-button pure-button-primary"
+                onClick={() => {
+                  navigate(`/singlepost/${post._id}`);
+                }}
+              >
+                See Details
+              </button>
             </div>
           </div>
         );

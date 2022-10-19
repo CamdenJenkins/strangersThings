@@ -11,7 +11,9 @@ const NavBar = ({ user, setToken }) => {
       <Link className={styles.home} to="/">
         Home
       </Link>
-      <Link to="/makepost">Add Post</Link>
+      <Link className={styles.addpost} to="/makepost">
+        Add Post
+      </Link>
 
       {user.username === "Guest" ? (
         <>
