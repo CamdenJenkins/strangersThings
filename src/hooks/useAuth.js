@@ -4,7 +4,7 @@ import { fetchMe } from "../api/auth";
 const useAuth = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({ user: "Guest" });
-
+  console.log(user);
   useEffect(() => {
     const getMe = async () => {
       console.log("Token before fetch");
