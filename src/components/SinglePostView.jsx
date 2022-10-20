@@ -35,12 +35,18 @@ const SinglePostView = ({ token }) => {
         onSubmit={async (e) => {
           e.preventDefault();
           const result = await fetchMessage(token);
-          console.log(result.messages);
+          console.log(result.data);
         }}
       >
-        <label>Message User:</label>
+        <label className={styles.message}>Message User:</label>
         <input type="text"></input>
-        <button type="submit">Submit</button>
+        <button
+          id={styles.submit}
+          className="pure-button pure-button-primary"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
       <button
         id={styles.button}

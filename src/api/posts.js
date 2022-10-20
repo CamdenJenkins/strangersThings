@@ -61,7 +61,7 @@ export const getPostById = async (postId) => {
   return filteredPosts[0];
 };
 
-export const fetchMessage = async () => {
+export const fetchMessage = async (token) => {
   const response = await fetch(
     "https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/users/me",
     {
@@ -72,7 +72,7 @@ export const fetchMessage = async () => {
       },
       body: JSON.stringify({
         message: {
-          content,
+          content: "",
         },
       }),
     }

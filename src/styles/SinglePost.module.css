@@ -25,3 +25,13 @@
   width: 9rem;
   font-size: larger;
 }
+
+.message {
+  font-family: sans-serif;
+  font-size: large;
+}
+
+#submit {
+  width: 5rem;
+  border-radius: 20px;
+}
