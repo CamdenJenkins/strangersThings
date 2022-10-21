@@ -30,6 +30,7 @@ const Posts = ({ token }) => {
               <p className={styles.description}>{post.description}</p>
               <p>{post.willDeliver}</p>
               <p className={styles.price}>Price: {post.price}</p>
+              <div> {post.messages}</div>
               <button
                 id={styles.button}
                 className="pure-button pure-button-primary"
